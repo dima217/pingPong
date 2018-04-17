@@ -9,12 +9,12 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class PingPongGame extends ApplicationAdapter {
 	SpriteBatch batch;
-	ShapeRenderer racket;
+	ShapeRenderer wall;
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		racket = new ShapeRenderer();
+		wall = new ShapeRenderer();
 	}
 
 	@Override
@@ -22,10 +22,14 @@ public class PingPongGame extends ApplicationAdapter {
 //		batch.begin();
 //		batch.end();
 
-		racket.begin(ShapeRenderer.ShapeType.Filled);
-		racket.setColor(Color.BLUE);
-		racket.rect(0, 0, 200, 5);
-		racket.end();
+        int windowHeight = Gdx.graphics.getHeight();
+        int windowWidth = Gdx.graphics.getWidth();
+        int height = 5;
+
+        wall.begin(ShapeRenderer.ShapeType.Filled);
+		wall.setColor(Color.BLUE);
+		wall.rect(0, windowHeight - height, windowWidth, height);
+		wall.end();
 	}
 	
 	@Override
