@@ -1,12 +1,13 @@
 package com.dima;
 
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-public class Rocket extends Actor {
+public class Rocket extends Actor implements InputProcessor {
     private Texture texture;
 
     Rocket(float x, float y, float width, float height, Color color) {
@@ -30,5 +31,38 @@ public class Rocket extends Actor {
         Color color = getColor();
         batch.setColor(color.r, color.g, color.b, color.a * parentAlpha);
         batch.draw(texture, getX(), getY(), getWidth(), getHeight());
+    }
+
+    public boolean keyDown (int keycode) {
+        System.out.println(keycode);
+        return false;
+    }
+
+    public boolean keyUp (int keycode) {
+        return false;
+    }
+
+    public boolean keyTyped (char character) {
+        return false;
+    }
+
+    public boolean touchDown (int x, int y, int pointer, int button) {
+        return false;
+    }
+
+    public boolean touchUp (int x, int y, int pointer, int button) {
+        return false;
+    }
+
+    public boolean touchDragged (int x, int y, int pointer) {
+        return false;
+    }
+
+    public boolean mouseMoved (int x, int y) {
+        return false;
+    }
+
+    public boolean scrolled (int amount) {
+        return false;
     }
 }

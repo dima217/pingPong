@@ -24,6 +24,7 @@ public class PingPongGame extends ApplicationAdapter {
 		stage = new Stage();
 
 		Gdx.input.setInputProcessor(stage);
+		Gdx.input.setInputProcessor(rocket);
 		stage.addActor(rocket);
 	}
 
