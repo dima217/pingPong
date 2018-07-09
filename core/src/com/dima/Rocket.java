@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 
 public class Rocket extends Actor implements InputProcessor {
     private Texture texture;
@@ -27,11 +28,17 @@ public class Rocket extends Actor implements InputProcessor {
     }
 
     private void moveToLeft() {
-        System.out.println("left");
+        MoveToAction action = new MoveToAction();
+        action.setPosition(0, 0);
+        action.setDuration(1);
+        this.addAction(action);
     }
 
     private void moveToRight() {
-        System.out.println("right");
+        MoveToAction action = new MoveToAction();
+        action.setPosition(600, 0);
+        action.setDuration(1);
+        this.addAction(action);
     }
 
     @Override
