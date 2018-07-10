@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 
 public class Rocket extends Actor implements InputProcessor {
     private Texture texture;
+    private float positionX;
 
     Rocket(float x, float y, float width, float height, Color color) {
         createTexture((int) width, (int) height, color);
@@ -17,6 +18,7 @@ public class Rocket extends Actor implements InputProcessor {
         setY(y);
         setWidth(width);
         setHeight(height);
+        positionX = x;
     }
 
     private void createTexture(int width, int height, Color color) {
@@ -31,14 +33,14 @@ public class Rocket extends Actor implements InputProcessor {
         MoveToAction action = new MoveToAction();
         action.setPosition(0, 0);
         action.setDuration(1);
-        this.addAction(action);
+        addAction(action);
     }
 
     private void moveToRight() {
         MoveToAction action = new MoveToAction();
         action.setPosition(600, 0);
         action.setDuration(1);
-        this.addAction(action);
+        addAction(action);
     }
 
     @Override
