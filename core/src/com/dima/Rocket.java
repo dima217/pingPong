@@ -30,10 +30,15 @@ public class Rocket extends Actor implements InputProcessor {
     }
 
     private void moveToLeft() {
-        MoveToAction action = new MoveToAction();
-        action.setPosition(0, 0);
-        action.setDuration(1);
-        addAction(action);
+        if (positionX > 0) {
+            float newX = positionX - 50;
+            positionX = newX;
+
+            MoveToAction action = new MoveToAction();
+            action.setPosition(newX, 0);
+            action.setDuration(1);
+            addAction(action);
+        }
     }
 
     private void moveToRight() {
@@ -53,8 +58,7 @@ public class Rocket extends Actor implements InputProcessor {
     public boolean keyDown(int keycode) {
         if (keycode == 21) {
             this.moveToLeft();
-        }
-        else if (keycode == 22) {
+        } else if (keycode == 22) {
             this.moveToRight();
         }
         return false;
