@@ -42,10 +42,15 @@ public class Rocket extends Actor implements InputProcessor {
     }
 
     private void moveToRight() {
-        MoveToAction action = new MoveToAction();
-        action.setPosition(600, 0);
-        action.setDuration(1);
-        addAction(action);
+        if (positionX < PingPongGame.SCREEN_WIDTH - PingPongGame.ROCKET_WIDTH) {
+            float newX = positionX + 50;
+            positionX = newX;
+
+            MoveToAction action = new MoveToAction();
+            action.setPosition(newX, 0);
+            action.setDuration(1);
+            addAction(action);
+        }
     }
 
     @Override

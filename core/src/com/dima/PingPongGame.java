@@ -8,7 +8,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 public class PingPongGame extends ApplicationAdapter {
-	private static final int SCREEN_WIDTH = 800;
+	static final int SCREEN_WIDTH = 800;
+	static final int ROCKET_WIDTH = 200;
 
 	private Stage stage;
 	private ShapeRenderer wall;
@@ -16,11 +17,10 @@ public class PingPongGame extends ApplicationAdapter {
 
 	@Override
 	public void create () {
-		int rocketWidth = 200;
-		int rocketX = SCREEN_WIDTH / 2 - rocketWidth / 2;
+		int rocketX = SCREEN_WIDTH / 2 - ROCKET_WIDTH / 2;
 
 		wall = new ShapeRenderer();
-		rocket = new Rocket(rocketX, 0, rocketWidth, 5, Color.BLUE);
+		rocket = new Rocket(rocketX, 0, ROCKET_WIDTH, 5, Color.BLUE);
 		stage = new Stage();
 
 		Gdx.input.setInputProcessor(stage);
