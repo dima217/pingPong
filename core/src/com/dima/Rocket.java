@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
+
 public class Rocket extends Actor implements InputProcessor {
     private Texture texture;
     private float positionX;
@@ -49,7 +51,13 @@ public class Rocket extends Actor implements InputProcessor {
             MoveToAction action = new MoveToAction();
             action.setPosition(newX, 0);
             action.setDuration(1);
-            addAction(action);
+
+            addAction(sequence(action, run(new Runnable() {
+                @Override
+                public void run() {
+                    moveToRight();
+                }
+            })));
         }
     }
 
@@ -63,7 +71,8 @@ public class Rocket extends Actor implements InputProcessor {
     public boolean keyDown(int keycode) {
         if (keycode == 21) {
             this.moveToLeft();
-        } else if (keycode == 22) {
+        }
+        else if (keycode == 22) {
             this.moveToRight();
         }
         return false;
