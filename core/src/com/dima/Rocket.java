@@ -13,6 +13,7 @@ import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
 public class Rocket extends Actor implements InputProcessor {
     private Texture texture;
     private float positionX;
+    private boolean moveIsAllowed = false;
 
     Rocket(float x, float y, float width, float height, Color color) {
         createTexture((int) width, (int) height, color);
@@ -32,25 +33,31 @@ public class Rocket extends Actor implements InputProcessor {
     }
 
     private void moveToLeft() {
-        if (positionX > 0) {
+        if (positionX > 0 && moveIsAllowed) {
             float newX = positionX - 50;
             positionX = newX;
 
             MoveToAction action = new MoveToAction();
             action.setPosition(newX, 0);
-            action.setDuration(1);
-            addAction(action);
+            action.setDuration(0.2f);
+
+            addAction(sequence(action, run(new Runnable() {
+                @Override
+                public void run() {
+                    moveToLeft();
+                }
+            })));
         }
     }
 
     private void moveToRight() {
-        if (positionX < PingPongGame.SCREEN_WIDTH - PingPongGame.ROCKET_WIDTH) {
+        if (positionX < PingPongGame.SCREEN_WIDTH - PingPongGame.ROCKET_WIDTH && moveIsAllowed) {
             float newX = positionX + 50;
             positionX = newX;
 
             MoveToAction action = new MoveToAction();
             action.setPosition(newX, 0);
-            action.setDuration(1);
+            action.setDuration(0.2f);
 
             addAction(sequence(action, run(new Runnable() {
                 @Override
@@ -70,15 +77,19 @@ public class Rocket extends Actor implements InputProcessor {
 
     public boolean keyDown(int keycode) {
         if (keycode == 21) {
-            this.moveToLeft();
-        }
-        else if (keycode == 22) {
-            this.moveToRight();
+            moveIsAllowed = true;
+            moveToLeft();
+        } else if (keycode == 22) {
+            moveIsAllowed = true;
+            moveToRight();
         }
         return false;
     }
 
     public boolean keyUp(int keycode) {
+        if (keycode == 21 || keycode == 22) {
+            moveIsAllowed = false;
+        }
         return false;
     }
 
