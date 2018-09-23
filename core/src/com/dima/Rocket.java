@@ -35,37 +35,25 @@ public class Rocket extends Actor implements InputProcessor {
     private void moveToLeft() {
         if (positionX > 0 && moveIsAllowed) {
             float newX = positionX - 50;
-            positionX = newX;
-
-            MoveToAction action = new MoveToAction();
-            action.setPosition(newX, 0);
-            action.setDuration(0.2f);
-
-            addAction(sequence(action, run(new Runnable() {
-                @Override
-                public void run() {
-                    moveToLeft();
-                }
-            })));
+            move(newX, this::moveToLeft);
         }
     }
 
     private void moveToRight() {
         if (positionX < PingPongGame.SCREEN_WIDTH - PingPongGame.ROCKET_WIDTH && moveIsAllowed) {
             float newX = positionX + 50;
-            positionX = newX;
-
-            MoveToAction action = new MoveToAction();
-            action.setPosition(newX, 0);
-            action.setDuration(0.2f);
-
-            addAction(sequence(action, run(new Runnable() {
-                @Override
-                public void run() {
-                    moveToRight();
-                }
-            })));
+            move(newX, this::moveToRight);
         }
+    }
+
+    private void move(float position, Runnable method) {
+        positionX = position;
+
+        MoveToAction action = new MoveToAction();
+        action.setPosition(position, 0);
+        action.setDuration(0.2f);
+
+        addAction(sequence(action, run(method)));
     }
 
     @Override
