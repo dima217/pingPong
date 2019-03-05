@@ -69,7 +69,8 @@ public class Rocket extends Actor implements InputProcessor {
         if (keycode == 21) {
             moveToLeftIsAllowed = true;
             moveToLeft();
-        } else if (keycode == 22) {
+        }
+        else if (keycode == 22) {
             moveToRightIsAllowed = true;
             moveToRight();
         }
@@ -79,7 +80,8 @@ public class Rocket extends Actor implements InputProcessor {
     public boolean keyUp(int keycode) {
         if (keycode == 21) {
             moveToLeftIsAllowed = false;
-        } else if (keycode == 22) {
+        }
+        else if (keycode == 22) {
             moveToRightIsAllowed = false;
         }
         return false;
