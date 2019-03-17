@@ -20,7 +20,7 @@ public class PingPongGame extends ApplicationAdapter {
 
         wall = new ShapeRenderer();
         Rocket rocket = new Rocket(rocketX, 0, ROCKET_WIDTH, 5, Color.BLUE);
-        Ball ball = new Ball(0, 470, 5, 5, Color.BLUE);
+        Ball ball = new Ball(0, 455,10, Color.BLUE);
         stage = new Stage();
 
         Gdx.input.setInputProcessor(stage);

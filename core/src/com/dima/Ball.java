@@ -9,18 +9,21 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 public class Ball extends Actor {
     private Texture texture;
 
-    Ball(float x, float y, float width, float height, Color color) {
-        createTexture((int) width, (int) height, color);
+    Ball(float x, float y, float radius, Color color) {
+        createTexture((int) radius, color);
         setX(x);
         setY(y);
-        setWidth(width);
-        setHeight(height);
+        setWidth(radius * 2);
+        setHeight(radius * 2);
     }
 
-    private void createTexture(int width, int height, Color color) {
-        Pixmap pixmap = new Pixmap(width, height, Pixmap.Format.RGBA8888);
+    private void createTexture(int radius, Color color) {
+        Pixmap pixmap = new Pixmap(radius * 2 + 1, radius * 2 + 1, Pixmap.Format.RGBA8888);
         pixmap.setColor(color);
-        pixmap.fillRectangle(0, 0, width, height);
+        pixmap.fillCircle(radius, radius, radius);
+//        pixmap.drawLine(0, 0, 0, 0);
+//        Pixmap.setFilter(Pixmap.Filter.NearestNeighbour);
+
         texture = new Texture(pixmap);
         pixmap.dispose();
     }
